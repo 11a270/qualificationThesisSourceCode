@@ -1,0 +1,15 @@
+body {
+    font-family: 'Renogare', Arial;
+}
+h1 {
+    font-size: 2.5em;
+    text-align: "center";
+}
+h2 {
+    font-size: 1.5em;
+    text-align: "center";
+}
+.table{
+    border: "1";
+    width: "85%"
+}
