@@ -62,48 +62,50 @@
 							$nameL = $row['holderLastName'];
 							$PC = $row['holderPersonal_ID'];
 
-							echo
-
-								"<form method=\"post\" action=\"editEtalonsScript.php\">
+							echo "<form method=\"post\" action=\"editEtalonsScript.php\">
+							<input type=\"hidden\" name=\"serialN\" value=\"\' . $serial . \'\">
 								<!-- Form -->
 								<div class=\"form-group\">
 								<label>eTalona numurs</label>
 									<div class=\"input-group mb-4\">
 										<input class=\"form-control\" name=\"num\" value\"$serial\"
-										placeholder=\"eTalona numurs\" type=\"text\" aria-label=\"serial\" disabled>
+										placeholder=\"$serial\" type=\"text\" aria-label=\"serial\" disabled>
 									</div>
 								</div>
 								<!-- End of Form -->
 								<!-- Form -->
 								<div class=\"form-group\">
 									<label>Zemāk esošie lauki nav jāievada ja jūs esat eTalona turētājs</label>
+									<label>Turētāja vārds</label>
 									<div class=\"input-group mb-4\">
 										<div class=\"input-group-prepend\">
 											<span class=\"input-group-text\"><span class=\"fas fa-user\"></span></span>
 										</div>
-										<input class=\"form-control\" name=\"nameF\" placeholder=\"Turētāja vārds\"
+										<input class=\"form-control\" name=\"nameF\" placeholder=\"$nameF\"
 										value\"$nameF\" type=\"text\" aria-label=\"login\">
 									</div>
 								</div>
 								<!-- End of Form -->
 								<!-- Form -->
 								<div class=\"form-group\">
+								<label>Turētāja uzvārds</label>
 									<div class=\"input-group mb-4\">
 										<div class=\"input-group-prepend\">
 											<span class=\"input-group-text\"><span class=\"fas fa-user\"></span></span>
 										</div>
-										<input class=\"form-control\" name=\"nameL\" placeholder=\"Turētāja uzvārds\"
+										<input class=\"form-control\" name=\"nameL\" placeholder=\"$nameL\"
 										value\"$nameL\" type=\"text\" aria-label=\"login\">
 									</div>
 								</div>
 								<!-- End of Form -->
 								<!-- Form -->
 								<div class=\"form-group\">
+								<label>Turētāja personas kods</label>
 									<div class=\"input-group mb-4\">
 										<div class=\"input-group-prepend\">
 											<span class=\"input-group-text\"><span class=\"fas fa-passport\"></span></span>
 										</div>
-										<input class=\"form-control\" name=\"PC\" placeholder=\"Turētāja personas kods\"
+										<input class=\"form-control\" name=\"PC\" placeholder=\"$PC\"
 										value\"$PC\" type=\"text\" aria-label=\"login\">
 									</div>
 								</div>

@@ -29,10 +29,12 @@
 
 	<!-- Pixel CSS -->
 	<link type="text/css" href="./css/neumorphism.css" rel="stylesheet">
+
+
 </head>
 
 <body>
-
+<?php if ($_COOKIE['user'] != ''): ?>
 	<!--<form method="POST" action="newEtalons.php">
 	<h1>eTalona reģistrācija</h1>
 	<a>ievadiet eTalona unikālo 10 vai 15 ciparu garu ID numuru no tā aizmugures</a>
@@ -141,7 +143,7 @@
 											type="text" aria-label="login">
 									</div>
 								</div>
-								<button type="submit" class="btn btn-block btn-primary">Reģistrēties</button>
+								<button type="submit" class="btn btn-block btn-primary">Reģistrēt</button>
 								<!-- End of Form -->
 							</form>
 						</div>
@@ -150,6 +152,31 @@
 			</div>
 		</div>
 	</div>
+	<!-- Core -->
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="vendor/popper.js/dist/umd/popper.min.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="vendor/headroom.js/dist/headroom.min.js"></script>
+
+<!-- Vendor JS -->
+<script src="vendor/onscreen/dist/on-screen.umd.min.js"></script>
+<script src="vendor/nouislider/distribute/nouislider.min.js"></script>
+<script src="vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+<script src="vendor/jarallax/dist/jarallax.min.js"></script>
+<script src="vendor/jquery.counterup/jquery.counterup.min.js"></script>
+<script src="vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>
+<script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="vendor/prismjs/prism.js"></script>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- Neumorphism JS -->
+<script src="assets/js/neumorphism.js"></script>
+<?php else:
+  header('Location: /etalons/login.php');
+?>
+<?php endif;?>
 </body>
 
 </html>

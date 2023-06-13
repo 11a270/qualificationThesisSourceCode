@@ -48,6 +48,28 @@
                 <div class="card bg-primary shadow-soft border-light p-5">
                     <div class="card-header text-center pb-0">
                         <h2 class="h3">Sveicināti, <?=$_COOKIE['user']?>!</h2>
+                        <h2 class="h4">Jums ir 
+                        <?php
+                        $mysql = new mysqli('localhost', 'root', '', 'etalons');
+                        function retrieveUserID($username, $sql)
+                        {
+                          $query = "SELECT `userid` FROM `useraccount` WHERE `login` = '$username'";
+                          $result = mysqli_query($sql, $query);
+                          $row = mysqli_fetch_row($result);
+                          return $row[0];
+                        }
+                        
+						            $loggedUser = $_COOKIE['user'];
+						            $uid = retrieveUserID($loggedUser, $mysql);
+
+						            $result = $mysql->query("SELECT `serialN`, `holderFirstName`, `holderLastName`, `holderPersonal_ID` FROM `etalons` WHERE `userCardBelongsTo` = '$uid'");
+                        $i = 0;
+                        while ($row = $result->fetch_assoc()) {
+                          $i++;
+                        }
+                        echo ($i);
+                        $mysql->close();
+                        ?> eTaloni</h2>
                         <h2 class="h4">Ko jūs vēlaties darīt?</h2>
                     </div>
                     <div class="card-body text-center">

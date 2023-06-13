@@ -8,7 +8,7 @@
     
     $mysql = new mysqli('localhost', 'root', 'root', 'etalons');
     $mysql->query("insert into `msg` (`name`, `email`, `text`) values('$name', '$email', '$msg')");
-    $mysql->close;
+    $mysql->close();
 
     header('Location: /contact.html')
 ?>

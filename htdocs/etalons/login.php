@@ -36,7 +36,7 @@ if (isset($_COOKIE['user'])) {
     <!-- Pixel CSS -->
     <link type="text/css" href="./css/neumorphism.css" rel="stylesheet">
 
-    <script>
+    <!-- <script>
 
         // Function to check Whether both passwords
         // is same or not.
@@ -53,7 +53,7 @@ if (isset($_COOKIE['user'])) {
             document.getElementById("rouxls1").required = true;
             document.getElementById("rouxls2").required = true;
         }
-    </script>
+    </script> -->
 
 </head>
 
@@ -123,6 +123,7 @@ if (isset($_COOKIE['user'])) {
                         <div class="card-header text-center pb-0">
                             <h2 class="mb-0 h5">Reģistrēties</h2>
                             <?php
+                            $error = 0;
                             if (array_key_exists('login', $_POST)) {
                                 $login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
                                 //echo nl2br("$login\n");
@@ -168,24 +169,36 @@ if (isset($_COOKIE['user'])) {
                                 //echo nl2br("$rouxls2\n");
                             }
 
+                            if(isset($_POST['rouxls1'])){
+                                $rouxls1 = 1;
+                            } else {
+                                    $rouxls1 = 0;
+                            }
+
+                            if(isset($_POST['rouxls2'])){
+                                    $rouxls2 = 1;
+                                } else {
+                                    $rouxls2 = 0;
+                                }
+
                             if (array_key_exists('regbtn', $_POST)) {
+
                                 if (mb_strlen($login) < 1 || mb_strlen($password) < 1 || mb_strlen($email) < 1) {
-                                    echo "ERROR: You have to provide all of creditentials in order to register";
-                                    exit();
+                                    echo "ERROR: You have to provide all of creditentials in order to log in";
                                 } elseif ($password != $password2) {
                                     echo "ERROR: Passwords must match";
-                                    exit();
-                            //     } elseif ($rouxls1 != 'Yes' || $rouxls2 != 'Yes') {
-                            //         echo "Lai registretos japiekrist datu glabāšanas un apstrādes un lietosanas noteikumiem";
-                                } else {
-
+                                } elseif ($rouxls1 == 0) {
+                                    echo "ERROR: CHECK THAT BOX!!!";
+                                    $error++;
+                                } 
+                                if ($error == 0) {
                                     $password = md5($password . "ghjsfkld2345");
-
+                                
                                     $mysql = new mysqli('localhost', 'root', '', 'etalons');
                                     $mysql->query("INSERT INTO `useraccount` (`login`, `email`, `password`, `userFirstName`, `userLastName`, `userPersonalIDNumber`, `mobilePhoneNum`, `landlinePhoneNum`)
-                                                                VALUES('$login', '$email', '$password', '$firstName', '$lastName', '$pid', '$mobile', '$landline')");
+                                                                                                VALUES('$login', '$email', '$password', '$firstName', '$lastName', '$pid', '$mobile', '$landline')");
                                     $mysql->close();
-                                    echo '<h3>User registered successfuly</h3>';
+                                    echo "User registered successful";
                                 }
                             }
                             ?>
@@ -301,14 +314,14 @@ if (isset($_COOKIE['user'])) {
                                         <input class="form-check-input" name="rouxls1" type="checkbox" value=""
                                             id="rouxls1">
                                         <label class="form-check-label" for="rouxls1" required>
-                                            Piekrītu lietošanas noteikumiem
+                                            Piekrītu <ins><a href="docs/lietosanasNoteikumi.pdf">lietošanas noteikumiem</a></ins>
                                         </label>
                                     </div>
                                     <div class="form-check mb-4">
                                         <input class="form-check-input" name="rouxls2" type="checkbox" value=""
                                             id="rouxls2">
                                         <label class="form-check-label" for="rouxls2" required>
-                                            Piekrītu datu glabāšanas un apstrādes noteikumiem
+                                            Piekrītu <ins><a href="docs/datuApstrade.pdf">datu glabāšanas un apstrādes noteikumiem</a></ins>
                                         </label>
                                     </div>
                                 </div>
