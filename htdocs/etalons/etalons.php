@@ -93,22 +93,7 @@
 						$uid = retrieveUserID($loggedUser, $mysql);
 
 						$result = $mysql->query("SELECT `serialN`, `holderFirstName`, `holderLastName`, `holderPersonal_ID` FROM `etalons` WHERE `userCardBelongsTo` = '$uid'");
-
-						if (array_key_exists('tablebtnTOP', $_POST)) {
-							//top();
-							if ($_SESSION['flag'] < 9) {
-								echo "wait paitiently for that functionality...";
-								$_SESSION['flag'] = $_SESSION['flag'] + 1;
-							} elseif ($_SESSION['top'] < 24) {
-								echo "even but now this favour is not w'rkingeth, so STOPETH PRESSING THATETH BUTTON THOU, WORM";
-								$_SESSION['flag'] = $_SESSION['flag'] + 1;
-							} elseif ($_SESSION['flag'] >= 25) {
-								echo "UNBEGINETH TO PRESS THAT BUTTON!!! IT ISN'T THINEST, FILTHEST WORM WHOMST I HATETH!!!";
-							} else {
-								$_SESSION['flag'] == 1;
-								echo "wait paitiently for that functionality...";
-							}
-						} else if (array_key_exists('tablebtnEDIT', $_POST)) {
+						if (array_key_exists('tablebtnEDIT', $_POST)) {
 							edit();
 						} else if (array_key_exists('tablebtnBLOCK', $_POST)) {
 							if ($_SESSION['flag'] != 1) {
@@ -150,7 +135,7 @@
 	<td>' . $row['holderLastName'] . '</td>
 	<td>' . $row['holderPersonal_ID'] . '</td>
 	<td>
-	<form method=\'post\' style="display: inline;">
+	<form action=\'etalonsBiljetter.php\' method=\'post\' style="display: inline;">
 		<input type="hidden" name="entry_id" value="' . $row['serialN'] . '">
 		<input type="submit" name="tablebtnEDIT" class="btn btn-primary text-secondary mr-2 mb-2" value="Apskatīt saturu" />
 	</form>
@@ -161,9 +146,8 @@
 	<form method="post" action=\'biljett.php\' style="display: inline;">
 		<input type="submit" name="tablebtnTOP" class="btn btn-primary text-success mr-2 mb-2" value="Papildināt" />
 		<input type="hidden" name="entry_id" value="' . $row['serialN'] . '">
-		</form>
-		<form method="post" style="display: inline;">
-		<input type="submit" name="tablebtnBLOCK" class="btn btn-primary text-danger mr-2 mb-2" value="Bloķēt" />
+	</form>
+	<form method="post" action=\'destroyEtalons.php\' style="display: inline;">
 		<input type="submit" name="tablebtnREMOVE" class="btn btn-primary text-danger mr-2 mb-2" value="Dzēst" />
 		<input type="hidden" name="entry_id" value="' . $row['serialN'] . '">
 	</form>

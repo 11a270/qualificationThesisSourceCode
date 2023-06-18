@@ -33,10 +33,12 @@
 
 <body>
 <?php
-$serial = $_POST["serialN"];
-$nameF = $_POST["nameF"];
-$nameL = $_POST["nameL"];
-$PC = $_POST["PC"];
+$serial = filter_var(trim($_POST["serialN"]), FILTER_SANITIZE_STRING);
+$nameF = filter_var(trim($_POST["nameF"]), FILTER_SANITIZE_STRING);
+$nameL = filter_var(trim($_POST["nameL"]), FILTER_SANITIZE_STRING);
+$PC = filter_var(trim($_POST["PC"]), FILTER_SANITIZE_STRING);
+
+var_dump($_POST);
 
 $mysql = new mysqli('localhost', 'root', '', 'etalons');
 

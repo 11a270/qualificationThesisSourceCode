@@ -62,6 +62,8 @@
 							$nameL = $row['holderLastName'];
 							$PC = $row['holderPersonal_ID'];
 
+							var_dump($_POST);
+
 							echo "<form method=\"post\" action=\"editEtalonsScript.php\">
 							<input type=\"hidden\" name=\"serialN\" value=\"\' . $serial . \'\">
 								<!-- Form -->

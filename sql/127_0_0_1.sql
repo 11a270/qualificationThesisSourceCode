@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2023 at 08:13 PM
+-- Generation Time: Jun 18, 2023 at 02:11 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -148,23 +148,20 @@ CREATE TABLE IF NOT EXISTS `etalons` (
   `userCardBelongsTo` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_etalons_useraccount` (`userCardBelongsTo`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
 -- Dumping data for table `etalons`
 --
 
 INSERT INTO `etalons` (`id`, `serialN`, `holderFirstName`, `holderLastName`, `holderPersonal_ID`, `issuedOn`, `expiringOn`, `userCardBelongsTo`) VALUES
-(16, 1111111111, '', '', '', NULL, NULL, 0),
 (17, 1111111112, '', '', '', NULL, NULL, 6),
-(18, 1111111113, '', '', '', NULL, NULL, 0),
-(19, 123456789012345, 'aaa', 'sss', 'ddd', NULL, NULL, 0),
 (20, 123456789012346, '', '', '', NULL, NULL, 0),
 (21, 256616537326201, '', '', '', NULL, NULL, 0),
-(22, 111111111111123, '', '', '', NULL, NULL, 0),
 (23, 123456789012348, '', '', '', NULL, NULL, 0),
 (24, 199999999999999, '', '', '', NULL, NULL, 0),
-(25, 0, '', '', '', NULL, NULL, 0);
+(26, 1800555353, '', '', '', NULL, NULL, 10),
+(27, 1111111111, '111', '111', '123456-12345', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -213,59 +210,85 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `addedTo` bigint(15) NOT NULL,
   `expiresOn` date DEFAULT (curdate() + interval 1 year),
   PRIMARY KEY (`id`),
-  KEY `FK_ticket_etalons` (`addedTo`),
-  KEY `FK_ticket_tickettype` (`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+  KEY `FK_ticket_tickettype` (`type`),
+  KEY `FK_ticket_etalons` (`addedTo`)
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
 -- Dumping data for table `ticket`
 --
 
 INSERT INTO `ticket` (`id`, `type`, `addedOn`, `addedTo`, `expiresOn`) VALUES
-(24, '1_90min', '0000-00-00', 0, NULL),
-(25, '1_90min', '0000-00-00', 0, NULL),
-(26, '1_90min', '0000-00-00', 0, NULL),
-(27, '1_90min', '0000-00-00', 0, NULL),
-(28, '1_90min', '0000-00-00', 0, NULL),
-(29, '2_day', '2023-06-10', 0, NULL),
-(30, '2_day', '2023-06-10', 0, NULL),
-(31, '2_day', '2023-06-10', 0, '2024-06-10'),
-(32, '2_day', '2023-06-10', 0, '2024-06-10'),
-(33, '2_day', '2023-06-10', 0, '2024-06-10'),
-(34, '2_day', '2023-06-10', 0, '2024-06-10'),
-(35, '2_day', '2023-06-10', 0, '2024-06-10'),
-(36, '2_day', '2023-06-10', 0, '2024-06-10'),
-(37, '2_day', '2023-06-10', 0, '2024-06-10'),
-(38, '2_day', '2023-06-10', 0, '2024-06-10'),
-(39, '6_qtrYr', '2023-06-10', 0, '2024-06-10'),
-(40, '6_qtrYr', '2023-06-10', 0, '2024-06-10'),
-(41, '6_qtrYr', '2023-06-10', 0, '2024-06-10'),
-(42, '6_qtrYr', '2023-06-10', 0, '2024-06-10'),
-(43, '6_qtrYr', '2023-06-10', 0, '2024-06-10'),
-(44, 'yr', '2023-06-10', 0, '2024-06-10'),
-(45, 'yr', '2023-06-10', 0, '2024-06-10'),
-(46, 'yr', '2023-06-10', 0, '2024-06-10'),
-(47, '2_day', '2023-06-10', 0, '2024-06-10'),
-(48, '2_day', '2023-06-10', 0, '2024-06-10'),
-(49, '2_day', '2023-06-10', 0, '2024-06-10'),
-(50, '1_90min', '2023-06-10', 0, '2024-06-10'),
-(51, '5_mon', '2023-06-10', 0, '2024-06-10'),
-(52, '1_90min', '2023-06-10', 0, '2024-06-10'),
-(53, 'yr', '2023-06-10', 0, '2024-06-10'),
-(54, 'yr', '2023-06-10', 0, '2024-06-10'),
-(55, 'yr', '2023-06-10', 0, '2024-06-10'),
-(56, '4_week', '2023-06-10', 0, '2024-06-10'),
-(57, '4_week', '2023-06-10', 0, '2024-06-10'),
-(58, 'yr', '2023-06-12', 0, '2024-06-12'),
-(59, 'yr', '2023-06-12', 0, '2024-06-12'),
-(60, 'yr', '2023-06-12', 0, '2024-06-12'),
-(61, 'yr', '2023-06-12', 0, '2024-06-12'),
-(62, 'yr', '2023-06-12', 0, '2024-06-12'),
-(63, 'yr', '2023-06-12', 0, '2024-06-12'),
-(64, 'yr', '2023-06-12', 0, '2024-06-12'),
-(65, 'yr', '2023-06-12', 0, '2024-06-12'),
-(66, 'yr', '2023-06-12', 0, '2024-06-12'),
-(67, 'yr', '2023-06-12', 0, '2024-06-12');
+(29, '2_day', '2023-06-10', 17, '2024-06-10'),
+(30, '2_day', '2023-06-10', 17, '2024-06-10'),
+(31, '2_day', '2023-06-10', 24, '2024-06-10'),
+(32, '2_day', '2023-06-10', 26, '2024-06-10'),
+(33, '2_day', '2023-06-10', 20, '2024-06-10'),
+(34, '2_day', '2023-06-10', 21, '2024-06-10'),
+(35, '2_day', '2023-06-10', 20, '2024-06-10'),
+(36, '2_day', '2023-06-10', 20, '2024-06-10'),
+(37, '2_day', '2023-06-10', 20, '2024-06-10'),
+(38, '2_day', '2023-06-10', 20, '2024-06-10'),
+(39, '6_qtrYr', '2023-06-10', 20, '2024-06-10'),
+(40, '6_qtrYr', '2023-06-10', 21, '2024-06-10'),
+(41, '6_qtrYr', '2023-06-10', 24, '2024-06-10'),
+(42, '6_qtrYr', '2023-06-10', 23, '2024-06-10'),
+(43, '6_qtrYr', '2023-06-10', 24, '2024-06-10'),
+(44, 'yr', '2023-06-10', 26, '2024-06-10'),
+(45, 'yr', '2023-06-10', 26, '2024-06-10'),
+(46, 'yr', '2023-06-10', 24, '2024-06-10'),
+(47, '2_day', '2023-06-10', 21, '2024-06-10'),
+(48, '2_day', '2023-06-10', 23, '2024-06-10'),
+(49, '2_day', '2023-06-10', 23, '2024-06-10'),
+(50, '1_90min', '2023-06-10', 21, '2024-06-10'),
+(51, '5_mon', '2023-06-10', 24, '2024-06-10'),
+(52, '1_90min', '2023-06-10', 23, '2024-06-10'),
+(53, 'yr', '2023-06-10', 21, '2024-06-10'),
+(54, 'yr', '2023-06-10', 24, '2024-06-10'),
+(55, 'yr', '2023-06-10', 23, '2024-06-10'),
+(56, '4_week', '2023-06-10', 21, '2024-06-10'),
+(57, '4_week', '2023-06-10', 23, '2024-06-10'),
+(58, 'yr', '2023-06-12', 26, '2024-06-12'),
+(59, 'yr', '2023-06-12', 26, '2024-06-12'),
+(60, 'yr', '2023-06-12', 27, '2024-06-12'),
+(61, 'yr', '2023-06-12', 20, '2024-06-12'),
+(62, 'yr', '2023-06-12', 26, '2024-06-12'),
+(63, 'yr', '2023-06-12', 24, '2024-06-12'),
+(64, 'yr', '2023-06-12', 26, '2024-06-12'),
+(65, 'yr', '2023-06-12', 26, '2024-06-12'),
+(66, 'yr', '2023-06-12', 24, '2024-06-12'),
+(67, 'yr', '2023-06-12', 21, '2024-06-12'),
+(71, '2_day', '2023-06-16', 23, '2024-06-16'),
+(72, '2_day', '2023-06-16', 17, '2024-06-16'),
+(73, '1_90min', '2023-06-16', 27, '2024-06-16'),
+(74, '1_90min', '2023-06-16', 17, '2024-06-16'),
+(75, '1_90min', '2023-06-16', 17, '2024-06-16'),
+(76, '1_90min', '2023-06-16', 17, '2024-06-16'),
+(77, '1_90min', '2023-06-16', 17, '2024-06-16'),
+(78, '1_90min', '2023-06-16', 17, '2024-06-16'),
+(79, '1_90min', '2023-06-16', 21, '2024-06-16'),
+(80, '1_90min', '2023-06-16', 27, '2024-06-16'),
+(81, '1_90min', '2023-06-16', 27, '2024-06-16'),
+(82, '1_90min', '2023-06-16', 27, '2024-06-16'),
+(83, '1_90min', '2023-06-16', 27, '2024-06-16'),
+(84, '4_week', '2023-06-16', 27, '2024-06-16'),
+(85, '2_day', '2023-06-16', 27, '2024-06-16'),
+(86, '2_day', '2023-06-16', 27, '2024-06-16'),
+(87, '3day', '2023-06-16', 27, '2024-06-16'),
+(88, '3day', '2023-06-16', 27, '2024-06-16'),
+(89, '2_day', '2023-06-16', 27, '2024-06-16'),
+(90, '1_90min', '2023-06-18', 27, '2024-06-18'),
+(91, '1_90min', '2023-06-18', 27, '2024-06-18'),
+(92, '1_90min', '2023-06-18', 20, '2024-06-18'),
+(94, '6_qtrYr', '2023-06-18', 27, '2024-06-18'),
+(95, '6_qtrYr', '2023-06-18', 27, '2024-06-18'),
+(96, '6_qtrYr', '2023-06-18', 27, '2024-06-18'),
+(97, '6_qtrYr', '2023-06-18', 27, '2024-06-18'),
+(98, '1_90min', '2023-06-18', 27, '2024-06-18'),
+(99, '1_90min', '2023-06-18', 27, '2024-06-18'),
+(100, '1_90min', '2023-06-18', 27, '2024-06-18'),
+(101, '1_90min', '2023-06-18', 27, '2024-06-18'),
+(102, '1_90min', '2023-06-18', 20, '2024-06-18');
 
 -- --------------------------------------------------------
 
@@ -288,7 +311,6 @@ CREATE TABLE IF NOT EXISTS `tickettype` (
 
 INSERT INTO `tickettype` (`name`, `visibleName`, `duration`, `price`, `reduced`) VALUES
 ('1_90min', '1 1/2 stundas biļete ($1.50)', 1.500000, 1.5, 'N'),
-('123', 'test', 0.000000, 0, 'N'),
 ('2_day', 'Dienas biļete ($4.50)', 24.000000, 4.5, 'N'),
 ('3day', '3 dienu biļete ($11.50)', 72.000000, 11, 'N'),
 ('4_week', 'Nedēļas biļete ($15.00)', 168.000000, 15, 'N'),
@@ -316,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `useraccount` (
   `typeExpiring` date DEFAULT NULL,
   PRIMARY KEY (`userid`),
   KEY `FK_useraccount_accounttypes` (`accountType`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
 -- Dumping data for table `useraccount`
@@ -332,7 +354,8 @@ INSERT INTO `useraccount` (`userid`, `login`, `email`, `password`, `userFirstNam
 (6, '11111', '11@11.aa', '8eeb53829052e3ac950ad50ef34b0447', 'aaaaa', 'aaaaa', '123456-78901', '+1 (800) 555-3535', '', 'std', NULL),
 (7, 'TatjanaKurakina', 'kurakina.tatjana@gmail.com', 'bba920df9a6c7473061d34441a624f89', 'Tatjana', 'Kurakina', '040984-10823', '29160922', '', 'std', NULL),
 (8, '44', 'a@a.aa', 'a8353708cb608fdb43212d4e4f2c6630', '', '', '', '', '', 'std', NULL),
-(9, 'a', 'a@a.aa', '75b14129afbe7021580dc2a1db2c6268', '', '', '', '', '', 'std', NULL);
+(9, 'a', 'a@a.aa', '75b14129afbe7021580dc2a1db2c6268', '', '', '', '', '', 'std', NULL),
+(10, 'lietotajs', 'epasc@inbox.lv', 'b81a4f4b8dea316bd815b684724e22dc', 'Students', 'Students', '123456-78901', '+1 (800) 555-3535', '', 'std', NULL);
 
 --
 -- Constraints for dumped tables
@@ -348,6 +371,7 @@ ALTER TABLE `etalons`
 -- Constraints for table `ticket`
 --
 ALTER TABLE `ticket`
+  ADD CONSTRAINT `FK_ticket_etalons` FOREIGN KEY (`addedTo`) REFERENCES `etalons` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_ticket_tickettype` FOREIGN KEY (`type`) REFERENCES `tickettype` (`name`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -355,349 +379,6 @@ ALTER TABLE `ticket`
 --
 ALTER TABLE `useraccount`
   ADD CONSTRAINT `FK_useraccount_accounttypes` FOREIGN KEY (`accountType`) REFERENCES `accounttypes` (`name`);
---
--- Database: `phpmyadmin`
---
-CREATE DATABASE IF NOT EXISTS `phpmyadmin` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-USE `phpmyadmin`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma_navigationhiding`
---
-
-CREATE TABLE IF NOT EXISTS `pma_navigationhiding` (
-  `username` varchar(64) NOT NULL,
-  `item_name` varchar(64) NOT NULL,
-  `item_type` varchar(64) NOT NULL,
-  `db_name` varchar(64) NOT NULL,
-  `table_name` varchar(64) NOT NULL,
-  PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Hidden items of navigation tree';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma_usergroups`
---
-
-CREATE TABLE IF NOT EXISTS `pma_usergroups` (
-  `usergroup` varchar(64) NOT NULL,
-  `tab` varchar(64) NOT NULL,
-  `allowed` enum('Y','N') NOT NULL DEFAULT 'N',
-  PRIMARY KEY (`usergroup`,`tab`,`allowed`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User groups with configured menu items';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma_users`
---
-
-CREATE TABLE IF NOT EXISTS `pma_users` (
-  `username` varchar(64) NOT NULL,
-  `usergroup` varchar(64) NOT NULL,
-  PRIMARY KEY (`username`,`usergroup`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and their assignments to user groups';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__bookmark`
---
-
-CREATE TABLE IF NOT EXISTS `pma__bookmark` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `dbase` varchar(255) NOT NULL DEFAULT '',
-  `user` varchar(255) NOT NULL DEFAULT '',
-  `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `query` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Bookmarks';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__central_columns`
---
-
-CREATE TABLE IF NOT EXISTS `pma__central_columns` (
-  `db_name` varchar(64) NOT NULL,
-  `col_name` varchar(64) NOT NULL,
-  `col_type` varchar(64) NOT NULL,
-  `col_length` text DEFAULT NULL,
-  `col_collation` varchar(64) NOT NULL,
-  `col_isNull` tinyint(1) NOT NULL,
-  `col_extra` varchar(255) DEFAULT '',
-  `col_default` text DEFAULT NULL,
-  PRIMARY KEY (`db_name`,`col_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Central list of columns';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__column_info`
---
-
-CREATE TABLE IF NOT EXISTS `pma__column_info` (
-  `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `db_name` varchar(64) NOT NULL DEFAULT '',
-  `table_name` varchar(64) NOT NULL DEFAULT '',
-  `column_name` varchar(64) NOT NULL DEFAULT '',
-  `comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `mimetype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `transformation` varchar(255) NOT NULL DEFAULT '',
-  `transformation_options` varchar(255) NOT NULL DEFAULT '',
-  `input_transformation` varchar(255) NOT NULL DEFAULT '',
-  `input_transformation_options` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Column information for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__designer_settings`
---
-
-CREATE TABLE IF NOT EXISTS `pma__designer_settings` (
-  `username` varchar(64) NOT NULL,
-  `settings_data` text NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Settings related to Designer';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__export_templates`
---
-
-CREATE TABLE IF NOT EXISTS `pma__export_templates` (
-  `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `username` varchar(64) NOT NULL,
-  `export_type` varchar(10) NOT NULL,
-  `template_name` varchar(64) NOT NULL,
-  `template_data` text NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved export templates';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__favorite`
---
-
-CREATE TABLE IF NOT EXISTS `pma__favorite` (
-  `username` varchar(64) NOT NULL,
-  `tables` text NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Favorite tables';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__history`
---
-
-CREATE TABLE IF NOT EXISTS `pma__history` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `username` varchar(64) NOT NULL DEFAULT '',
-  `db` varchar(64) NOT NULL DEFAULT '',
-  `table` varchar(64) NOT NULL DEFAULT '',
-  `timevalue` timestamp NOT NULL DEFAULT current_timestamp(),
-  `sqlquery` text NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `username` (`username`,`db`,`table`,`timevalue`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__navigationhiding`
---
-
-CREATE TABLE IF NOT EXISTS `pma__navigationhiding` (
-  `username` varchar(64) NOT NULL,
-  `item_name` varchar(64) NOT NULL,
-  `item_type` varchar(64) NOT NULL,
-  `db_name` varchar(64) NOT NULL,
-  `table_name` varchar(64) NOT NULL,
-  PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Hidden items of navigation tree';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__pdf_pages`
---
-
-CREATE TABLE IF NOT EXISTS `pma__pdf_pages` (
-  `db_name` varchar(64) NOT NULL DEFAULT '',
-  `page_nr` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `page_descr` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`page_nr`),
-  KEY `db_name` (`db_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='PDF relation pages for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__recent`
---
-
-CREATE TABLE IF NOT EXISTS `pma__recent` (
-  `username` varchar(64) NOT NULL,
-  `tables` text NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Recently accessed tables';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__relation`
---
-
-CREATE TABLE IF NOT EXISTS `pma__relation` (
-  `master_db` varchar(64) NOT NULL DEFAULT '',
-  `master_table` varchar(64) NOT NULL DEFAULT '',
-  `master_field` varchar(64) NOT NULL DEFAULT '',
-  `foreign_db` varchar(64) NOT NULL DEFAULT '',
-  `foreign_table` varchar(64) NOT NULL DEFAULT '',
-  `foreign_field` varchar(64) NOT NULL DEFAULT '',
-  PRIMARY KEY (`master_db`,`master_table`,`master_field`),
-  KEY `foreign_field` (`foreign_db`,`foreign_table`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relation table';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__savedsearches`
---
-
-CREATE TABLE IF NOT EXISTS `pma__savedsearches` (
-  `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `username` varchar(64) NOT NULL DEFAULT '',
-  `db_name` varchar(64) NOT NULL DEFAULT '',
-  `search_name` varchar(64) NOT NULL DEFAULT '',
-  `search_data` text NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved searches';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__table_coords`
---
-
-CREATE TABLE IF NOT EXISTS `pma__table_coords` (
-  `db_name` varchar(64) NOT NULL DEFAULT '',
-  `table_name` varchar(64) NOT NULL DEFAULT '',
-  `pdf_page_number` int(11) NOT NULL DEFAULT 0,
-  `x` float UNSIGNED NOT NULL DEFAULT 0,
-  `y` float UNSIGNED NOT NULL DEFAULT 0,
-  PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__table_info`
---
-
-CREATE TABLE IF NOT EXISTS `pma__table_info` (
-  `db_name` varchar(64) NOT NULL DEFAULT '',
-  `table_name` varchar(64) NOT NULL DEFAULT '',
-  `display_field` varchar(64) NOT NULL DEFAULT '',
-  PRIMARY KEY (`db_name`,`table_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table information for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__table_uiprefs`
---
-
-CREATE TABLE IF NOT EXISTS `pma__table_uiprefs` (
-  `username` varchar(64) NOT NULL,
-  `db_name` varchar(64) NOT NULL,
-  `table_name` varchar(64) NOT NULL,
-  `prefs` text NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`username`,`db_name`,`table_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__tracking`
---
-
-CREATE TABLE IF NOT EXISTS `pma__tracking` (
-  `db_name` varchar(64) NOT NULL,
-  `table_name` varchar(64) NOT NULL,
-  `version` int(10) UNSIGNED NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
-  `schema_snapshot` text NOT NULL,
-  `schema_sql` text DEFAULT NULL,
-  `data_sql` longtext DEFAULT NULL,
-  `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') DEFAULT NULL,
-  `tracking_active` int(1) UNSIGNED NOT NULL DEFAULT 1,
-  PRIMARY KEY (`db_name`,`table_name`,`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Database changes tracking for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__userconfig`
---
-
-CREATE TABLE IF NOT EXISTS `pma__userconfig` (
-  `username` varchar(64) NOT NULL,
-  `timevalue` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `config_data` text NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
-
---
--- Dumping data for table `pma__userconfig`
---
-
-INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2023-05-04 17:47:14', '{\"Console\\/Mode\":\"collapse\"}');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__usergroups`
---
-
-CREATE TABLE IF NOT EXISTS `pma__usergroups` (
-  `usergroup` varchar(64) NOT NULL,
-  `tab` varchar(64) NOT NULL,
-  `allowed` enum('Y','N') NOT NULL DEFAULT 'N',
-  PRIMARY KEY (`usergroup`,`tab`,`allowed`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User groups with configured menu items';
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pma__users`
---
-
-CREATE TABLE IF NOT EXISTS `pma__users` (
-  `username` varchar(64) NOT NULL,
-  `usergroup` varchar(64) NOT NULL,
-  PRIMARY KEY (`username`,`usergroup`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and their assignments to user groups';
---
--- Database: `test`
---
-CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `test`;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

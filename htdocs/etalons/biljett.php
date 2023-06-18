@@ -97,6 +97,7 @@
 										aria-label="login">
 								</div>
 							</div>
+							<input type="hidden" name="entryId" value="<?php echo $serial; ?>">
 							<button type="submit" class="btn btn-block btn-primary">Pirkt</button>
 							<!-- End of Form -->
 						</form>

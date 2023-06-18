@@ -57,27 +57,25 @@
 						{
 							$query = "SELECT `id` FROM `etalons` WHERE `serialN` = '$id'";
 							$result = mysqli_query($sql, $query);
-							return $result->fetch_assoc();
+							$row = mysqli_fetch_row($result);
+							return $row['0'];
 						}
-						$serial = filter_var(trim($_POST['serialN']), FILTER_SANITIZE_STRING);
+						$serial = filter_var(trim($_POST['entryId']), FILTER_SANITIZE_STRING);
 						$biljett = filter_var(trim($_POST['biljetter']), FILTER_SANITIZE_STRING);
 						$qty = filter_var(trim($_POST['qty']), FILTER_SANITIZE_STRING);
-                        $sql = "SELECT `id` FROM `etalons` WHERE `serialN` = '$serial'";
-						$result = $mysql->query($sql);
-						$row = $result->fetch_assoc();
-						//$serial = $row['id'];
+						$id = retrieveID($serial, $mysql);
                         
                         for ($i = 0; $i < $qty; $i++) { 
-                            $mysql->query("INSERT INTO `ticket` (`type`, `addedTo`) VALUES('$biljett', '0')");
+                            $mysql->query("INSERT INTO `ticket` (`type`, `addedTo`) VALUES('$biljett', '$id')");
                         }
                         $mysql->close();
                             ?>
 							<!-- Form -->
 							<div class="form-group">
 								<div class="input-group mb-4">
-                                    <input type="hidden" name="serial" value="'.$serial .'">
-                                    <input type="hidden" name="biljett" value="'.$biljett .'">
-                                    <input type="hidden" name="qty" value="'.$qty .'">
+                                    <input type="hidden" name="serial" value="<?php echo $serial; ?>">
+                                    <input type="hidden" name="biljett" value="<?php echo $biljett; ?>">
+                                    <input type="hidden" name="qty" value="<?php echo $qty; ?>">
 								</div>
 							</div>
 							<button type="submit" class="btn btn-block btn-primary">Rēķins PDF formātā</button>
